@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Results</title>
+</head>
+<body>
+    <h1>Comparison Results</h1>
+    <h2>{{ account1 }} vs {{ account2 }}</h2>
+    <table border="1">
+        <tr>
+            <th>Feature</th>
+            <th>{{ account1 }}</th>
+            <th>{{ account2 }}</th>
+        </tr>
+        {% for data in comparison_data %}
+            <tr>
+                <td>{{ data['feature'] }}</td>
+                <td>{{ data['account1'] }}</td>
+                <td>{{ data['account2'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

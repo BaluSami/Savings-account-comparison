@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Account Comparison</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f4f4f4; }
+        h2 { background-color: #f4f4f4; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Savings Account Comparison</h1>
+    <form method="POST">
+        <label for="comparisons">Select accounts for comparison:</label><br>
+        <select id="comparisons" name="comparisons" multiple>
+            {% for comparison in comparisons %}
+                <option value="{{ comparison }}" {% if comparison in selected_comparisons %}selected{% endif %}>{{ comparison }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Compare">
+    </form>
+    {% for title in selected_comparisons %}
+    <h2>{{ title }}</h2>
+    <table>
+        <tr>
+            <th>Point of Comparison</th>
+            <th>Option 1</th>
+            <th>Option 2</th>
+        </tr>
+        <tr>
+            <td>Key Features and Benefits</td>
+            <td>{{ comparisons[title]['key_features_benefits'][0] }}</td>
+            <td>{{ comparisons[title]['key_features_benefits'][1] }}</td>
+        </tr>
+        <tr>
+            <td>Eligibility</td>
+            <td>{{ comparisons[title]['eligibility'][0] }}</td>
+            <td>{{ comparisons[title]['eligibility'][1] }}</td>
+        </tr>
+        <tr>
+            <td>Minimum Balance Requirements</td>
+            <td>{{ comparisons[title]['minimum_balance'][0] }}</td>
+            <td>{{ comparisons[title]['minimum_balance'][1] }}</td>
+        </tr>
+        <tr>
+            <td>Debit Card Benefits</td>
+            <td>{{ comparisons[title]['debit_card_benefits'][0] }}</td>
+            <td>{{ comparisons[title]['debit_card_benefits'][1] }}</td>
+        </tr>
+    </table>
+    {% endfor %}
+</body>
+</html>
